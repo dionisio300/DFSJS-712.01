@@ -1,0 +1,16 @@
+<h2>Pagina para deletar Alunos</h2>
+
+<ul style="list-style-type: none;">
+    {{#each resultado}}
+        <li>ID: {{this.id}} Nome: {{this.nome}}</li>
+    {{/each}}
+</ul>
+
+<form action="/deleteAluno" method="post">
+    <label for="id">Id do Aluno a ser deletado:</label><br>
+    <input type="number" name="id" id="id"><br><br>
+
+    <input type="submit" value="Deletar">
+</form>
+
+<a href="/paginaInicial">Voltar</a>

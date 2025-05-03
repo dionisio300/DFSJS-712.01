@@ -1,0 +1,19 @@
+<h1>Página de atualização de nome</h1>
+
+<ul style="list-style-type: none;">
+    {{#each resultado}}
+        <li>ID: {{this.id}} Nome: {{this.nome}}</li>
+    {{/each}}
+</ul>
+
+<form action="/atualizaNome" method="post">
+    <label for="id">Id do Aluno:</label><br>
+    <input type="number" name="id" id="id"><br><br>
+
+    <label for="nome">Novo Nome:</label><br>
+    <input type="text" name="nome" id="nome"><br><br>
+
+    <input type="submit" value="Atualizar">
+</form>
+
+<a href="/paginaInicial">Voltar</a>

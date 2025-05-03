@@ -39,13 +39,15 @@ conexao.connect(erro => {
 })
 
 app.get('/',(req, res) => {
-    
     res.render('home')
 })
 
 app.get('/paginaInicial',(req,res) => {
-
     res.render('paginaInicial')
+})
+
+app.get('/cadastrarAlunos',(req,res) => {
+    res.render('cadastrarAlunos')
 })
 
 app.get('/listarAlunos',(req, res) => {
@@ -58,6 +60,35 @@ app.get('/listarAlunos',(req, res) => {
         }
     })
 })
+
+
+app.get('/deletarAluno',(req,res) => {
+
+    let sql = `select * from alunos`
+    conexao.query(sql,(erro, resultado) => {
+        if(erro){
+            console.log(erro)
+        }else{
+            res.render('deletarAluno',{resultado})
+        }
+    })
+
+})
+
+app.get('/atualizarNome',(req,res) => {
+    let sql = `select * from alunos`
+    conexao.query(sql,(erro, resultado) => {
+        if(erro){
+            console.log(erro)
+        }else{
+            res.render('atualizarNome',{resultado})
+        }
+    })
+    
+})
+
+
+
 
 app.post('/validarUsuario',(req, res) => {
     let user = req.body.usuario
@@ -83,6 +114,52 @@ app.post('/validarUsuario',(req, res) => {
     
 })
 
+app.post('/cadastroAlunos',(req,res) => {
+    let nome = req.body.nome
+    let email = req.body.email
+
+    let sql = `insert into alunos(nome, email) values ("${nome}", "${email}")`
+
+    conexao.query(sql,(erro, resultado) => {
+        if(erro){
+            console.log(erro)
+        }else{
+            console.log('Aluno cadastrado com sucesso')
+            res.render('paginaInicial')
+        }
+    })
+
+})
+
+app.post('/deleteAluno',(req,res) => {
+    let id = req.body.id
+    let sql = `delete from alunos where id = ${id}`
+    conexao.query(sql, (erro, resp) => {
+        if(erro){
+            console.log(erro)
+        }else{
+           console.log('Deletado com sucesso')
+           res.render('paginaInicial')
+        }
+    })
+})
+
+
+app.post('/atualizaNome', (req,res) => {
+    let id = req.body.id
+    let nome = req.body.nome
+
+    let sql = `update alunos set nome = '${nome}' where id = ${id}`
+    conexao.query(sql,(erro, resp) => {
+        if(erro){
+            console.log(erro)
+        }else{
+            console.log('Atualizado')
+            res.render('atualizarNome')
+        }
+    })
+
+})
 
 
 
