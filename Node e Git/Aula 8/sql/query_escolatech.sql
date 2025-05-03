@@ -24,7 +24,16 @@ insert into alunos (nome, email) values
 select * from alunos;
 
 
+create table usuarios(
+id int primary key auto_increment,
+usuario varchar(20) unique,
+senha varchar(20) 
+);
 
+insert into usuarios(usuario, senha) values 
+('teste', '123'),
+('Maria','456'),
+('João', '789');
 
 
 

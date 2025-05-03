@@ -43,6 +43,14 @@ app.get('/',(req, res) => {
     res.render('home')
 })
 
+app.post('/validarUsuario',(req, res) => {
+    let user = req.body.usuario
+    let senha = req.body.senha
+
+    console.log(user,senha);
+    res.render('home')
+})
+
 
 
 
