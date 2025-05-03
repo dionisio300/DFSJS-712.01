@@ -48,6 +48,17 @@ app.get('/paginaInicial',(req,res) => {
     res.render('paginaInicial')
 })
 
+app.get('/listarAlunos',(req, res) => {
+    let sql = `select * from alunos`
+    conexao.query(sql,(erro, resultado) => {
+        if(erro){
+            console.log(erro)
+        }else{
+            res.render('listaAlunos',{resultado})
+        }
+    })
+})
+
 app.post('/validarUsuario',(req, res) => {
     let user = req.body.usuario
     let senha = req.body.senha
@@ -60,7 +71,7 @@ app.post('/validarUsuario',(req, res) => {
         }else{
             for (let i = 0; i < resultado.length ; i++){
                 if(user == resultado[i].usuario && senha == resultado[i].senha){
-                    res.render('paginaInicial')
+                    res.render('paginaInicial',{user})
                 }
             }
             console.log('Errou usuario ou senha');
