@@ -1,0 +1,18 @@
+
+<h1 onclick="clicou()">Essa é a página inicial</h1>
+
+
+{{#if pessoa.estudante}}
+
+<h2>Olá {{pessoa.nome}} vejo que você tem {{pessoa.idade}} e está cursando {{pessoa.curso}}</h2>
+
+{{else}}
+
+<h2>Olá {{pessoa.nome}}, conheça os nossos cursos:</h2>
+<ul>
+    <li>Python</li>
+    <li>JavaScript</li>
+    <li>C##</li>
+</ul>
+
+{{/if}}
